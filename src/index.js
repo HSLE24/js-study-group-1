@@ -1,5 +1,8 @@
-const API_KEY = ""
+const API_KEY = ""//"e680e552a20847d39488f4cdf0df7c0c"
 let info = []
+let todayMenuData = []
+let veganMenuData = []
+let imgCnt = 5;
 
 const getAPIData = async () => {
     const url = new URL(
@@ -33,3 +36,55 @@ function render(){
 }
 
 //getAPIData();
+
+const getRecommendationMenuData = async () => {
+
+    let url = new URL(
+        `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=5&exclude-tags=vegetarian`
+    );
+
+    let response = await fetch(url);
+    let APIData = await response.json();
+
+    todayMenuData = APIData.recipes;
+    
+    renderTodayMenu();
+
+    url = new URL(
+        `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=5&include-tags=vegetarian`
+    );
+
+    response = await fetch(url);
+    APIData = await response.json();
+
+    veganMenuData = APIData.recipes;
+
+    renderVeganMenu();
+}
+
+function renderTodayMenu(){
+    let resultHTML = "";
+
+    for (let i = 0; i < todayMenuData.length; i++){
+        resultHTML += `
+                <img class="RecommendationMenu-item" src="${todayMenuData[i].image}" href="./recipe.html?id=${todayMenuData[i].id}" title=${todayMenuData[i].title}>
+        `
+    }
+
+    document.getElementById("todayMenu-list").innerHTML = resultHTML;
+}
+
+
+function renderVeganMenu(){
+    let resultHTML = "";
+
+    for (let i = 0; i < veganMenuData.length; i++){
+        resultHTML += `
+                <img class="RecommendationMenu-item" src="${veganMenuData[i].image}" href="./recipe.html?id=${veganMenuData[i].id}" title=${veganMenuData[i].title}>
+        `
+    }
+
+    document.getElementById("veganMenu-list").innerHTML = resultHTML;
+}
+
+getRecommendationMenuData();
