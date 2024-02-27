@@ -1,4 +1,4 @@
-const API_KEY = ""//"e680e552a20847d39488f4cdf0df7c0c"
+const API_KEY = ""
 let info = []
 let todayMenuData = []
 let veganMenuData = []
