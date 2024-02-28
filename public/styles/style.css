@@ -2,7 +2,86 @@
     font-weight: bold;
 }
 
+.categoryMenu-group{
+    margin-top: 2em;
+}
+.RecommendationMenu-title{
+    font-weight: bold;
+    margin: 1em;
+    font-size: large;
+}
+.RecommendationMenu-group{
+    margin-top: 2em;
+}
+
 .RecommendationMenu-item{
+    margin: 0.1em;
+    height: 144px;
+    width: 216px;
+    position: relative;
+}
+.RecommendationMenu-item img{
+    height: 144px;
+    width: 216px;
     border-radius: 24px;
-    height: 150px;
+}
+.RecommendationMenu-caption{
+    height: 144px;
+    width: 216px;
+    border-radius: 24px;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 12px;
+    color: white;
+    box-sizing: border-box;
+    padding-top: 50px;
+    opacity: 0;
+    transition: 0.5s;
+}
+.RecommendationMenu-item:hover .RecommendationMenu-caption{
+    opacity: 1;
+}
+.RecommendationMenu-caption p{
+    font-weight: bold;
+}
+.RecommendationMenu-caption p:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.CategoryMenu-item{
+    height: 240px;
+    width: 324px;
+    position: relative;
+}
+.CategoryMenu-item img{
+    border-radius: 24px;
+}
+.CategoryMenu-caption{
+    height: 233px;
+    width: 314px;
+    border-radius: 24px;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 11px;
+    color: white;
+    box-sizing: border-box;
+    padding-top: 100px;
+    opacity: 0;
+    transition: 0.5s;
+}
+.CategoryMenu-caption a{
+    text-decoration: none;
+    color: white;
+}
+.CategoryMenu-caption a:hover{
+    text-decoration: underline;
+}
+.CategoryMenu-item:hover .CategoryMenu-caption{
+    opacity: 1;
+}
+.CategoryMenu-caption h3{
+    font-weight: bold;
 }
