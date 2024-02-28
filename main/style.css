@@ -1,0 +1,93 @@
+nav{
+    border-bottom:1px solid rgba(224, 224, 224, 0.5);
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+}
+.nav-board{
+    position: relative;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0px auto;
+}
+.nav-top{
+    display:flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.nav-bottom{
+    display:flex;
+    padding:10px 0;
+    gap:2rem;
+}
+.nav-bottom button{
+    background-color: white;
+    border:none;
+    font-size:25px;
+}
+.nav-bottom button:hover{
+    color:rgb(191, 145, 126);
+}
+.logo a{
+    color:rgb(191, 145, 126);
+    display:flex;
+    align-items: center;
+    font-size:30px;
+}
+.login a{
+    line-height: 45px;
+    font-size:20px;
+    color:rgb(97, 97, 97);
+}
+
+.menu-buttons button{
+    background-color: transparent;
+    border:none;
+    font-size:1.5rem;
+}
+.menu-buttons button:hover{
+    scale:1.1;
+}
+.nation-category{
+    display: flex;
+    justify-content: center;
+}
+.nation-category:hover{
+    color:white;
+}
+.nation-category svg{
+    color:white;
+    font-size:2rem;
+}
+.food-bar{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0rem;
+}
+.food-cate{
+    display:flex;
+    justify-content: space-around;
+}
+.menu-images{
+    width:100%;
+    border-radius: 10%;
+}
+.recipe-line{
+    display: flex;
+    justify-content: space-around;
+}
+.grid{
+    display:grid;
+    grid-template-rows:1fr 1fr 1fr;
+}
+.text-center h4{
+    color:black;
+    padding:1rem;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    scale:1.1;
+}
