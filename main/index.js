@@ -8,29 +8,39 @@ recipesByCategory(event)))
 console.log("aaasd", category)
 
 const getRecipe=async()=>{
-    const url = new URL(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=9`);
+    const url = new URL(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=16`);
     
     const response = await fetch(url);
     const data = await response.json();
-    recipesList = data.recipes;
+    recipesList = data.results;
     render();
-    console.log("shit", data)
 }
 
 const recipesByCategory=async(event)=>{
-    const quisine = event.target.textContent;
-    console.log("dddddi", quisine);
-    const url = new URL(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&quisine=${quisine}&number=9`)
+    const cuisine = event.target.textContent;
+    console.log("dddddi", cuisine);
+    const url = new URL(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&cuisine=${cuisine}&number=16`)
     const response = await fetch(url);
     const data = await response.json();
-    recipesList = data.recipes;
+    console.log("six", data)
+    recipesList = data.results;
     render();
+}
+
+const getRecipeByKeyword=async()=>{
+    const keyword = document.getElementById('search-input').value;
+    console.log("keyword", keyword)
+    const url = new URL(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${keyword}&number=16`)
+    const response = await fetch(url);
+    const data = await response.json();
+    recipesList = data.results;
+    searchRender();
 }
 
 const render=()=>{
     let recipeHTML = ``;
     recipeHTML = recipesList.map(
-        recipe=>`<div class="col-md-4 text-center">        
+        recipe=>`<div class="col-md-3 col-sm-6 text-center">        
         <a href="#">
             <img src=${recipe.image} class="menu-images">
             <h4>${recipe.title}</h4>        
@@ -39,40 +49,16 @@ const render=()=>{
     document.getElementById('recipe-board').innerHTML=recipeHTML;
 }
 
+const searchRender=()=>{
+    let recipeHTML = ``;
+    recipeHTML = recipesList.map(
+        recipe=>`<div class="col-md-3 col-sm-6 text-center">        
+        <a href="#">
+            <img src=${recipe.image} class="menu-images">
+            <h4>${recipe.title}</h4>        
+        </a>            
+    </div>`).join('');
+    document.getElementById('search-board').innerHTML=recipeHTML;
+}
 
 getRecipe()
-// const API_KEY = "4a1471f63a0a4ef081c3a604886e6ac4"
-// let info = []
-
-// const getAPIData = async () => {
-//     const url = new URL(
-//         `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=pasta&maxFat=25&number=2`
-//     );
-
-//     const response = await fetch(url);
-//     const APIdata = await response.json();
-
-//     console.log(APIdata)
-    
-//     info = APIdata.results
-
-//     render();
-// }
-
-// function render(){
-//     let resultHTML = '';
-
-//     for (let i = 0; i < info.length; i++){
-//         resultHTML += `
-//             <div id="${info[i].id}">
-//                 <div>TITLE: ${info[i].title}</div>
-//                 <img src="${info[i].image}" class="food-img">
-//             </div>
-//         `
-//     }
-
-//     document.getElementById("food-list").innerHTML = resultHTML;
-
-// }
-
-//getAPIData();

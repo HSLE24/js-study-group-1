@@ -34,31 +34,114 @@
     </div>
     
   </nav>
-  <section class="container">
-    <div class="nation-category">
+  <div class="intro">
+    <h1>RECIPES FOR YOU</h1>
+      <p>Browse personalized recommended recipes</p>
+      <div class="row">
+        <img src="./image/gimbap.jpg" class="col-lg-3">
+        <img src="./image/ggomakimbap.jpg" class="col-lg-3">
+        <img src="./image/pepper sause.jpg" class="col-lg-3">
+        <img src="./image/carrotgimbap.jpg" class="col-lg-3">    
+      </div>
+  </div>
+  <section class="search-area">
+    <div class="text-center">
+      <h1>SEARCH RECIPES</h1>
+      <p>Make delicious food with 상호명</p>
+      <input type="text" id="search-input">
+      <button onclick="getRecipeByKeyword()">Search</button>
+    </div>
+    <div id="search-board" class="row result-pic">
+
+    </div>
+  </section>
+  <section class="recipe-area">
+    <h1>OUR RECIPES</h1>
+    <p>Make delicious food with 상호명</p>
+    <div class="nation-category mt-5 mb-5">
         <button>Korean</button>
         <button>Japanese</button>
         <button>French</button>
         <button>Italian</button>
         <button>British</button>
-        <button>Vietnamese</button>
-        <button>Thai</button>
+        <button>American</button>
+        <!-- <button>Thai</button>
         <button>Indian</button>
         <button>Spanish</button>
         <button>American</button>
         <button>Mexican</button>
-        <button>German</button>
+        <button>German</button> -->
     </div>
     <div class="row recipe-line" id="recipe-board">
       
     </div>
-    
+  </section>
+  <footer>
+    <div class="footer-top">
       <div>
         <div>
-
+          <p>고객센터</p>
+          <div class="footer-button">
+            <button>전화번호</button>
+            <button>문의하기</button>
+          </div>
+        </div>
+        <div>
+          <p>운영시간</p>
+          <p>
+            전화문의 - 10:00 ~ 12:00, 13:00 ~ 17:00 / 주말·공휴일 휴무<br/>
+            1:1 문의 - 09:00 ~ 12:00, 13:00 ~ 17:30 / 주말·공휴일 휴무
+          </p>
         </div>
       </div>
-</section>
+      <div>
+        <i class="fa-brands fa-youtube"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-square-facebook"></i>
+      </div>
+    </div>
+
+
+
+
+    <div class="footer-mid">
+      <div>
+        <a href="#">이용약관</a>
+        <a href="#">개인정보처리방침</a>
+        <a href="#">공지사항</a>
+        <a href="#">자주묻는질문</a>
+        <span>광고/제휴 문의:contact@culturehero.net</span>
+      </div>
+    </div>
+
+
+
+    <div class="footer-bottom">
+      <div>
+        <p>(주)컬쳐히어로</p>
+        <div class="footer-line">
+          <p>상호 : (주)컬쳐히어로</p>
+          <p>대표자 : 양준규</p>
+          <p>개인정보관리책임자 : 장호진</p>
+          <p>사업자 등록번호 : 144-81-35400</p>
+        </div>
+        <div class="footer-line">
+          <p>통신판매업 신고 : 제 2015-경기성남-1940 호</p>
+          <p>전화 : 1833-8307</p>
+          <p>팩스 : 031-8017-1800</p>
+        </div>
+        <div class="footer-line">
+          <p>주소 : (13487) 경기도 성남시 분당구 삼평동625 판교세븐벤처밸리1단지 제3동 1001호</p>
+          <p>이메일 : commerce@culturehero.net</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom2">
+        <h4>상호명</h4>
+        <p>© 2018 by Culturehero. All rights are reserved.</p>
+      </div>
+    </div>
+  </footer>
     <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
