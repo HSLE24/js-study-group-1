@@ -1,0 +1,310 @@
+/* 공통 스타일 */
+
+.food-title {
+    font-weight: bold;
+}
+
+.Menu-group,
+.veganMenu-group,
+.categoryMenu-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 18px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1024px;
+}
+
+.interval {
+    margin: 3em;
+}
+
+.RecommendationMen-list-style {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 49% 23.5% 23.5%;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    padding-top: 80px;
+}
+
+.Menu-item-child-0 {
+    grid-area: 1 / 1 / 3 / 2;
+}
+
+.Menu-item-child-1 {
+    grid-area: 1 / 2 / 1 / 2;
+}
+
+.Menu-item-child-2 {
+    grid-area: 1 / 3 / 1 / 3;
+}
+
+.Menu-item-child-3 {
+    grid-area: 2 / 2 / 3 / 4;
+}
+
+.RecommendationMenu-item,
+.RecommendationMenu-item-last {
+    border: 1px solid rgba(147, 112, 98, 0.6);
+    border-radius: 24px;
+    position: relative;
+    cursor: pointer;
+}
+
+.RecommendationMenu-item img,
+.RecommendationMenu-item-last img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+}
+
+.categoryMenu-nav-style {
+    width: 100%;
+    max-width: 1050px;
+    margin: 80px 0px 40px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    border-top: 1px solid rgb(147, 112, 98);
+    border-left: 1px solid rgb(147, 112, 98);
+    padding: 0;
+}
+
+.categoryMenu-nav-item {
+    box-sizing: border-box;
+    padding: 12px 8px;
+    color: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    border-right: 1px solid rgb(147, 112, 98);
+    border-bottom: 1px solid rgb(147, 112, 98);
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 19px;
+    letter-spacing: -0.5px;
+}
+
+.selected-Cuisine {
+    background: rgb(117, 87, 75);
+}
+
+.categoryMenu-list-style {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(232px, 1fr));
+    gap: 56px 20px;
+    overflow-x: initial;
+}
+
+.categoryMenu-item {
+    position: relative;
+}
+
+.categoryMenu-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    border: 1px solid rgba(147, 112, 98, 0.6);
+    transition: opacity 0.3s;
+}
+
+.categoryMenu-item img:hover {
+    opacity: 0.6;
+}
+
+.categoryMenu-title {
+    padding-top: 1em;
+    width: 216px;
+    text-align: center;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.veganMenu-group-curation {
+    width: 100vw;
+    background: rgb(244, 240, 239);
+    border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+.veganMenu-list-style {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(316px, 1fr));
+    align-items: flex-start;
+    gap: 56px 20px;
+    margin: 0px;
+}
+
+.VeganMenu-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+}
+
+.VeganMenu-caption {
+    height: 40px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 4px 8px;
+    background: rgba(147, 112, 98, 0.9);
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    top: 40px;
+}
+
+.VeganMenu-caption p {
+    color: white;
+    font-weight: bold;
+}
+
+@media (max-width: 1023px) {
+    /* 모바일용 미디어 쿼리 */
+    .Menu-group,
+    .RecommendationMen-list-style,
+    .categoryMenu-nav-style {
+        padding-top: 40px;
+    }
+
+    .RecommendationMen-list-style {
+        width: 500px;
+        padding-top: 40px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .RecommendationMen-list-style > div:nth-of-type(1),
+    .RecommendationMen-list-style > div:nth-of-type(2),
+    .RecommendationMen-list-style > div:nth-of-type(3),
+    .RecommendationMen-list-style > div:nth-of-type(4) {
+        grid-area: unset;
+    }
+
+    .RecommendationMen-list-style > div:nth-of-type(1) {
+        grid-area: 1 / 1 / 2 / 3;
+    }
+
+    .RecommendationMen-list-style > div:nth-of-type(2) {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    .RecommendationMen-list-style > div:nth-of-type(3) {
+        grid-area: 2 / 2 / 3 / 3;
+    }
+
+    .RecommendationMen-list-style > div:nth-of-type(4) {
+        grid-area: 3 / 1 / 4 / 3;
+    }
+
+    .veganMenu-group {
+        padding: 40px 0px;
+    }
+
+    .categoryMenu-nav-style {
+        width: 100%;
+        max-width: 1050px;
+        margin: 80px 0px 40px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-top: 1px solid rgb(147, 112, 98);
+        border-left: 1px solid rgb(147, 112, 98);
+        padding: 0;
+    }
+    
+    .categoryMenu-list-style {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 아이폰 용 미디어 쿼리 */
+@media only screen and (max-width: 400px) {
+    .Menu-group,
+    .veganMenu-group,
+    .categoryMenu-group {
+        padding-top: 40px;
+    }
+
+    .interval {
+        margin: 2em;
+    }
+
+    .VeganMenu-item-chile-0,
+    .VeganMenu-item-chile-2 {
+        display: none;
+    }
+
+    .veganMenu-list-style {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .RecommendationMen-list-style {
+        width: calc(100% - 32px);
+        padding-top: 40px;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding-left: 24px;
+    }
+
+    .RecommendationMen-list-style > div:nth-of-type(1),
+    .RecommendationMen-list-style > div:nth-of-type(2),
+    .RecommendationMen-list-style > div:nth-of-type(3),
+    .RecommendationMen-list-style > div:nth-of-type(4) {
+        grid-area: unset;
+    }
+
+    .RecommendationMen-list-style > div:nth-of-type(1) {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .RecommendationMen-list-style > div:nth-of-type(2) {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    .RecommendationMen-list-style > div:nth-of-type(3) {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+    .RecommendationMen-list-style > div:nth-of-type(4) {
+        grid-area: 4 / 1 / 5 / 2;
+    }
+
+    .categoryMenu-nav-style {
+        width: 100%;
+        max-width: 1050px;
+        margin: 80px 0px 40px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-top: 1px solid rgb(147, 112, 98);
+        border-left: 1px solid rgb(147, 112, 98);
+        padding: 0;
+    }
+
+    .categoryMenu-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .categoryMenu-list-style {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .categoryMenu-title {
+        padding-top: 1em;
+        width: 400px;
+    }
+}
