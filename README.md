@@ -3,3 +3,4 @@
 
 ![image](https://github.com/HSLE24/js-study-group-1/assets/4832903/3504f6ed-0c60-4ae1-8875-1a301d6cf302)
 ![image](https://github.com/HSLE24/js-study-group-1/assets/4832903/95ec68da-1fe1-4c27-b019-27fd7093ad8c)
+![image](https://github.com/HSLE24/js-study-group-1/assets/4832903/260b5de0-eb1d-4ede-876b-07a4ec2b04e9)
