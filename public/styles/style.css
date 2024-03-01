@@ -1,0 +1,62 @@
+.search-detail{
+    width: 100%;
+    width: 480px;
+    margin: auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.search-detail input {
+    display: inline-block;
+    width: 100%;
+    height: 48px;
+    padding: 16px 48px 16px 8px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid rgb(189, 189, 189);
+    background: rgb(255, 255, 255);
+    font-weight: normal;
+    font-family: "Noto Sans KR", Helvetica, "Helvetica Neue", Arial, "sans-serif";
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.5px;
+}
+.search-icon{    
+    position: relative;
+    right: 40px;
+    cursor: pointer;
+    font-size: 25px;
+}
+.change-color {
+    position: relative;
+    width: auto; /* 부모 요소의 너비에 따라 크기를 조절합니다. */
+    background: rgb(244, 240, 239);
+    border-bottom: 1px solid rgb(224, 224, 224);
+    padding: 0 1000px; /* 좌우 패딩을 추가하여 꽉 채웁니다. */
+    margin-left: calc(-1000px);
+    margin-right: calc(-1000px);
+}
+
+.search-area {
+    position: relative;
+    width: 100%;
+}
+
+/* 미디어 쿼리 */
+@media only screen and (max-width: 430px) {
+    .search-detail {
+        width: 100%;
+    }
+
+    .change-color {
+        padding: 10px 0; /* 상하 여백을 주세요. */
+        padding: 0 1000px; /* 좌우 패딩을 추가하여 꽉 채웁니다. */
+    }
+    .search-detail {
+        width: 100%;
+        padding: 0 10px; /* 추가된 속성: 좌우 패딩 조정 */
+        margin-left: 10px;
+    }
+}

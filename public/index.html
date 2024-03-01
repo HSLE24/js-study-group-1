@@ -16,17 +16,33 @@
 <body>
     <div class="container text-center">
         <main class="Menu-group">
-            <section class="container RecommendationMenu-group">
+            <section class="img-container RecommendationMenu-group">
                 <h1 class="menu-title">RECIPES FOR YOU</h1>
                 <h2 class="menu-comment">Explore personalized recipe recommendations.</h2>
                 <div id="RecommendationMen-list" class="RecommendationMen-list-style"></div>
                 <div class="interval"></div>
             </section>
-            <section class="veganMenu-group veganMenu-group-curation">
-                <h1 class="menu-title">다른거</h1>
-            </section>
-            <div class="interval"></div>
+            <div class="change-color">
+                <section class="search-area">
+                    <div>
+                      <div class="interval"></div>
+                      <h1 class="menu-title">SEARCH RECIPES</h1>
+                      <h2 class="menu-comment">Make delicious food with 상호명</h2>
+                      <div class="interval"></div>
+                      <div class="search-detail">
+                        <input type="text" id="search-input">
+                        <i onclick="getRecipeByKeyword()" class="fa-solid fa-magnifying-glass search-icon"></i>
+                      </div>
+                      <div class="interval"></div>
+                    </div>
+                    <div id="search-board" class="categoryMenu-list-style">
+                
+                    </div>
+                    <div class="interval"></div>
+                </section>
+            </div>
             <section class="categorynav-group">
+                <div class="interval"></div>
                 <h1 class="menu-title">VARIOUS COUNTRIES</h1>
                 <h2 class="menu-comment">Enjoy a variety of international cuisines at our table.</h2>
                 <ul id="categoryMenu-navbar" class="categoryMenu-nav-style">
