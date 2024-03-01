@@ -22,17 +22,6 @@ const getRecommendationMenuData = async () => {
     todayMenuData = APIdata.recipes;
     
     renderTodayMenu();
-
-    url = new URL(
-        `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=3&include-tags=vegetarian`
-    );
-
-    response = await fetch('../src/data/veganMenu.json');
-    APIdata = await response.json();
-
-    veganMenuData = APIdata.recipes;
-
-    renderVeganMenu();
 }
 
 function renderTodayMenu(){
@@ -63,23 +52,6 @@ function renderTodayMenu(){
     }
 
     document.getElementById("RecommendationMen-list").innerHTML = resultHTML;
-}
-
-function renderVeganMenu(){
-    let resultHTML = "";
-
-    for (let i = 0; i < 3; i++){ //veganMenuData.length
-        resultHTML += `
-            <div class="VeganMenu-item VeganMenu-item-chile-${i}">
-                <img src="${veganMenuData[i].image}" href="./recipe.html?id=${veganMenuData[i].id}" title=${veganMenuData[i].title}>
-                <div class="VeganMenu-caption">
-                    <p href="#">${veganMenuData[i].title}</p>
-                </div>
-            </div>
-            `
-    }
-
-    document.getElementById("veganMenu-list").innerHTML = resultHTML;
 }
 
 function renderCategoryNavbar(){
