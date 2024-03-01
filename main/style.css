@@ -136,7 +136,7 @@ a:hover{
     margin: 80px auto;
 }
 footer{
-    border-top:1px solid black;
+    border-top:1px solid rgb(158, 158, 158)
 }
 .footer-top{
     display:flex;
@@ -180,9 +180,41 @@ footer{
 .footer-bottom2 h4{
     float:right;
 }
+.footer-button{
+    margin:20px 0;
+}
 .footer-button button{
     background-color: white;
     border:1px solid rgb(191, 145, 126);
     padding: 10px 20px;
     border-radius: 5px;
+}
+.footer-button button:hover{
+    background-color: rgb(191, 145, 126);
+    color:white;
+}
+.sns-area{
+    display:flex;
+    align-items: center;
+    gap:10px;
+}
+.sns-area a{
+    font-size:30px;
+}
+.sns-area a:hover{
+    color:rgb(191, 145, 126);
+}
+@media screen and (max-width:1000px){
+    .footer-top{
+        display:block;
+    }
+    .footer-bottom{
+        display:block;
+    }
+    .footer-line{
+        flex-direction: column;
+    }
+    .footer-bottom2{
+        display:none;
+    }
 }
