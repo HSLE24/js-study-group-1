@@ -218,3 +218,16 @@ footer{
         display:none;
     }
 }
+.recipe-info{
+    cursor:pointer;
+}
+.info-area{
+    width:100%;
+    max-width:1024px;
+    margin:0 auto;
+    display:flex;
+    justify-content: space-around;
+}
+.info-item{
+    max-width:50%;
+}
