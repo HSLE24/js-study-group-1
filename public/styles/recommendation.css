@@ -23,7 +23,7 @@
 }
 
 .interval {
-    margin: 3em;
+    margin: 2em;
 }
 
 .veganMenu-list-style {
@@ -45,7 +45,8 @@
 .VeganMenu-caption {
     height: 60px;
     box-sizing: border-box;
-    width: 328px;
+    width: 100%;
+    max-width: 328px;
     padding: 4px 8px;
     background: rgba(147, 112, 98, 0.9);
     border-bottom-left-radius: 24px;
@@ -53,9 +54,15 @@
     top: 40px;
 }
 
-.VeganMenu-caption p {
+.VeganMenu-caption a {
+    padding-top: 0.5em;
+    text-decoration: none;
+    font-size: large;
     color: white;
     font-weight: bold;
+}
+.VeganMenu-caption a:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 1023px) {
