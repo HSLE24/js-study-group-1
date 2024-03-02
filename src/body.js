@@ -1,4 +1,4 @@
-const API_KEY = ""//"e680e552a20847d39488f4cdf0df7c0c"
+const API_KEY_body = "e680e552a20847d39488f4cdf0df7c0c"
 let info = []
 let todayMenuData = []
 let veganMenuData = []
@@ -9,19 +9,97 @@ const cuisine = ["African","Asian","American","British","Cajun","Caribbean","Chi
     "European","French","German","Greek","Indian","Irish","Italian","Japanese","Jewish","Korean",
     "Latin American","Mediterranean","Mexican","Middle Eastern","Nordic","Southern","Spanish","Thai","Vietnamese"] // 임시
 let selectedCuisine = "Korean"
+let recipesList = [];
+
+document.addEventListener("keypress", handleEnterKeyPress)
+
+function handleEnterKeyPress(event){
+    const keyword = document.getElementById('search-input').value;
+
+    if (event.which === 13 || event.keyCode === 13){
+        if (keyword != null && keyword != undefined && keyword.value != ""){
+            getRecipeByKeyword();
+        }
+    }
+}
+
+const getRecipeByKeyword=async()=>{
+    const keyword = document.getElementById('search-input').value;
+
+    try{
+        const url = new URL(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY_body}&query=${keyword}&number=16`)
+        const response = await fetch('../src/data/searchMenu.json');//
+        const data = await response.json();
+        console.log(data);
+
+        recipesList = data.results;
+
+        if (response.status === 200){
+            searchRender();
+        }
+        else {
+            throw new Error(data.message)
+        }
+        if (recipesList.length < 1){
+            throw new Error("No matches for your search")
+        }
+    }
+    catch(error){
+        let resultHTML = `
+            <div class="alert alert-danger" role="alert">
+                ${error.message}
+            </div>
+        `;
+        document.getElementById('search-board').innerHTML = resultHTML;
+    }
+}
+
+const searchRender=()=>{
+    let recipeHTML = ``;
+    recipeHTML = recipesList.map(
+        recipe=>`
+            <div class="categoryMenu-item-box">
+                <div class="categoryMenu-item">
+                    <img src="${recipe.image}" href="./recipe.html?id=${recipe.id}" title=${recipe.title}>
+                </div>
+                <p class="categoryMenu-title" href="#">${recipe.title}</p>
+            </div>
+    `).join('');
+    document.getElementById('search-board').innerHTML=recipeHTML;
+}
 
 const getRecommendationMenuData = async () => {
-
-    let url = new URL(
-         `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=6&exclude-tags=vegetarian`
-    );
-
-    let response = await fetch('../src/data/todayMenu.json');//
-    let APIdata = await response.json();
-
-    todayMenuData = APIdata.recipes;
     
-    renderTodayMenu();
+    try{
+        let url = new URL(
+            `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY_body}&number=6&exclude-tags=vegetarian`
+        );
+
+        let response = await fetch('../src/data/todayMenu.json');//
+        let APIdata = await response.json();
+
+        todayMenuData = APIdata.recipes;
+        
+    
+        if (response.status === 200){
+            renderTodayMenu();
+        }
+        else {
+            throw new Error(data.message)
+        }
+        if (todayMenuData.length < 1){
+            throw new Error("No matches for your search")
+        }
+    }
+    catch(error){
+
+        let resultHTML = `
+        <div class="alert alert-danger" role="alert">
+            ${error.message}
+        </div>
+        `;
+        document.getElementById("RecommendationMen-list").innerHTML = resultHTML;
+    }
 }
 
 function renderTodayMenu(){
@@ -77,32 +155,52 @@ function renderCategoryNavbar(){
 const renderCategoryMenu = async (selectedCuisine_temp) => {
 
     selectedCuisine = selectedCuisine_temp;
+    try{
+            
+        const url = new URL(
+            `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY_body}&cuisine=${selectedCuisine}&number=40`
+        );
 
-    const url = new URL(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&cuisine=${selectedCuisine}&number=40`
-    );
+        const response = await fetch('../src/data/categoryMenu.json');//
+        const APIdata = await response.json();
 
-    const response = await fetch('../src/data/categoryMenu.json');
-    const APIdata = await response.json();
+        categoryMenuData = APIdata.results;
+        
+        if (response.status === 200){
+            let resultHTML = "";
 
-    categoryMenuData = APIdata.results;
+            for (let i = 0; i < 24; i++){
+                resultHTML += `
+                    <div class="categoryMenu-item-box">
+                        <div class="categoryMenu-item">
+                            <img src="${categoryMenuData[i].image}" href="./recipe.html?id=${categoryMenuData[i].id}" title=${categoryMenuData[i].title}>
+                        </div>
+                        <p class="categoryMenu-title" href="#">${categoryMenuData[i].title}</p>
+                    </div>
+                    `
+            }
 
-    let resultHTML = "";
+            document.getElementById("categoryMenu-list").innerHTML = resultHTML;
 
-    for (let i = 0; i < categoryMenuData.length; i++){
-        resultHTML += `
-            <div class="categoryMenu-item-box">
-                <div class="categoryMenu-item">
-                    <img src="${categoryMenuData[i].image}" href="./recipe.html?id=${categoryMenuData[i].id}" title=${categoryMenuData[i].title}>
-                </div>
-                <p class="categoryMenu-title" href="#">${categoryMenuData[i].title}</p>
-            </div>
-            `
+            renderCategoryNavbar();
+        }
+        else {
+            throw new Error(data.message)
+        }
+        if (categoryMenuData.length < 1){
+            throw new Error("No matches for your search")
+        }
     }
+    catch(error){
 
-    document.getElementById("categoryMenu-list").innerHTML = resultHTML;
-
-    renderCategoryNavbar();
+        let resultHTML = `
+        <div class="alert alert-danger" role="alert">
+            ${error.message}
+        </div>
+        `;
+        document.getElementById("categoryMenu-list").innerHTML = resultHTML;
+    }
+    
 }
 
 getRecommendationMenuData();

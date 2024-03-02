@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes Project</title>
+    <link rel="stylesheet" href="./styles/recipe.css">
+</head>
+<body>
+    
+<div container>    
+    <h3>Category</h3>
+
+    <h2 id="recipeTitle"></h2>
+    <div class="introduction">
+    <div class="image"><img id="recipeImage" src="" alt="요리"></div>
+    <div class="intro-detail">
+    <button id="recipe-btn">Introduction of Recipe</button>
+    <button id="ingredient-btn">Ingredients</button>
+        <div id = "show-recipeIntro"></div>
+        <div id = "show-ingredient">
+        
+        </div>
+    <!-- <div id="description"> 요리 상세 설명</div> -->
+    </div>
+    </div>
+
+    <div id="instruction">
+      <h4>How can we cook this?</h4>
+      <div id="showInstruction"></div>
+      <!-- <ol>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol> -->
+    </div>
+
+    <div class="recommandation">
+        <h4>See other recommended recipes</h4>
+
+        <div>
+            <img src="" alt="추천1">
+        </div>
+        <div>
+            <img src="" alt="추천2">
+        </div>
+    </div>
+</div>
+
+<script src="../src/recipe.js"></script>    
+</body>
+</html>

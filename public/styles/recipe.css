@@ -1,0 +1,37 @@
+#show-ingredient {
+    display: none;
+}
+
+#show-ingredient.toggleShow-Ingredient {
+    display: block;
+    line-height: 2em;
+    margin-bottom: 20px;
+}
+
+
+/* 레시피 소개 토글 */
+
+
+#show-recipeIntro {
+    display: none;
+}
+#show-recipeIntro.toggleShow-recipeIntro {
+    display: block;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+    max-width: 50%;
+}
+
+.intro-detail button {
+    height: 3.5em;
+    background-color: beige;
+    border-radius: 10px;
+    border: 2.5mm ridge rgba(212, 220, 50, 0.437);
+    font-weight: bold;
+    
+}
+
+.intro-detail button:hover {
+    background-color: gold;
+    transition: 1s;
+}
