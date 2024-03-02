@@ -6,6 +6,8 @@ category.forEach(category=>category.addEventListener("click",(event)=>
 recipesByCategory(event)))
 
 
+
+
 const getRecipe=async()=>{
     const url = new URL(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=16`);
     
@@ -92,71 +94,68 @@ const searchRender=()=>{
 }
 
 
-
 const recipeRender = (infoData, instructionsData) => {
-    const { title, image, summary, winePairing, extendedIngredients } = infoData;
-        const pairingText = winePairing ? winePairing.pairingText : "N/A";
+    const { id, title, image, summary, winePairing, extendedIngredients } = infoData;
+    const pairingText = winePairing ? winePairing.pairingText : "N/A";
 
-        let ingredientsList = "<ul>";
-        extendedIngredients.forEach(ingredient => {
-            ingredientsList += `<li>${ingredient.original}</li>`;
+    let ingredientsList = "<ul>";
+    extendedIngredients.forEach(ingredient => {
+        ingredientsList += `<li>${ingredient.original}</li>`;
+    });
+    ingredientsList += "</ul>";
+
+    let instructionsList = "";
+    if (instructionsData && instructionsData.length > 0) {
+        instructionsList = "<ol>";
+        instructionsData[0].steps.forEach(step => {
+            instructionsList += `<li>${step.step}</li>`;
         });
-        ingredientsList += "</ul>";
+        instructionsList += "</ol>";
+    } else {
+        instructionsList = "Instructions not available.";
+    }
 
-        let recipeHTML = `<div class="row info-area">
-            <div class="col-lg-6" name="tag2">
-                <p style="font-size:30px;" class="text-center">${title}</p>
-                <div><img src="${image}" style="width:100%;"></div>
+    let recipeHTML = `<div class="row info-area">
+        <div class="col-lg-12" name="tag2">
+            <p style="font-size:30px;" class="text-center">${title}</p>
+            
+            <div><img src="${image}" style="width:100%;"></div>
+            <div class="mt-5"><b>Summary</b> : ${summary}</div>
+            <div class="mt-3 text-center">
+                <button class="toggle-button" onclick="toggleIngredients(${id})">Ingredients</button>
+                <button class="toggle-button" onclick="toggleInstructions(${id})">Instructions</button>
+                <button class="toggle-button" onclick="toggleWinePairing(${id})">Wine Pairing</button>
             </div>
-            <div class="col-lg-6">
-                <div><b>Summary</b> : ${summary}</div>
-                <div class="mt-5"><b>Wine Pairing</b> : ${pairingText}</div>
-                <div class="mt-5"><b>Ingredients</b> : ${ingredientsList}</div>
-            </div>
-        </div>`;
+        </div>
+        <div class="col-lg-12">
+            <div id="ingredients-${id}" style="display: none;"><b>Ingredients</b>: ${ingredientsList}</div>
+            <div id="instructions-${id}" style="display: none;"><b>Instructions</b>: ${instructionsList}</div>
+            <div id="wine-pairing-${id}" style="display: none;"><b>Wine Pairing</b>: ${pairingText}</div>
+        </div>
+    </div>`;
 
-        if (instructionsData && instructionsData.length > 0) {
-            const steps = instructionsData[0].steps;
-            recipeHTML += `<div><b>Instructions</b>:</div>`;
-            steps.forEach(stepObj => {
-                recipeHTML += `<div>Step ${stepObj.number}: ${stepObj.step}</div>`;
-            });
-        }
-
-        document.getElementById('recipe-board').innerHTML = recipeHTML;
+    document.getElementById('recipe-board').innerHTML = recipeHTML;
 }
 
-const recipeRender2 = (infoData, instructionsData) => {
-    const { title, image, summary, winePairing, extendedIngredients } = infoData;
-        const pairingText = winePairing ? winePairing.pairingText : "N/A";
+// Toggle functions for each section
+const toggleIngredients = (id) => {
+    const ingredientsSection = document.getElementById(`ingredients-${id}`);
+    ingredientsSection.style.display = ingredientsSection.style.display === 'none' ? 'block' : 'none';
+}
 
-        let ingredientsList = "<ul>";
-        extendedIngredients.forEach(ingredient => {
-            ingredientsList += `<li>${ingredient.original}</li>`;
-        });
-        ingredientsList += "</ul>";
+const toggleInstructions = (id) => {
+    const instructionsSection = document.getElementById(`instructions-${id}`);
+    instructionsSection.style.display = instructionsSection.style.display === 'none' ? 'block' : 'none';
+}
 
-        let recipeHTML = `<div class="row info-area">
-            <div class="col-lg-6" name="tag1">
-                <p style="font-size:30px;" class="text-center">${title}</p>
-                <div><img src="${image}" style="width:100%;"></div>
-            </div>
-            <div class="col-lg-6">
-                <div><b>Summary</b> : ${summary}</div>
-                <div class="mt-5"><b>Wine Pairing</b> : ${pairingText}</div>
-                <div class="mt-5"><b>Ingredients</b> : ${ingredientsList}</div>
-            </div>
-        </div>`;
+const toggleWinePairing = (id) => {
+    const winePairingSection = document.getElementById(`wine-pairing-${id}`);
+    winePairingSection.style.display = winePairingSection.style.display === 'none' ? 'block' : 'none';
+}
 
-        if (instructionsData && instructionsData.length > 0) {
-            const steps = instructionsData[0].steps;
-            recipeHTML += `<div><b>Instructions</b>:</div>`;
-            steps.forEach(stepObj => {
-                recipeHTML += `<div>Step ${stepObj.number}: ${stepObj.step}</div>`;
-            });
-        }
-
-        document.getElementById('search-board').innerHTML = recipeHTML;
+function toggleElement() {
+    var element = document.getElementById("toggle-element");
+    element.classList.toggle("hidden");
 }
 
 getRecipe()
