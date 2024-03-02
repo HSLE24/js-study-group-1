@@ -133,7 +133,8 @@ a:hover{
 .result-pic{
     width:100%;
     max-width: 1024px;
-    margin: 80px auto;
+    margin: 0 auto;
+    margin-top:80px;
 }
 footer{
     border-top:1px solid rgb(158, 158, 158)
