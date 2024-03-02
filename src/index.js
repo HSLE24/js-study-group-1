@@ -1,4 +1,8 @@
-const API_KEY = `4a1471f63a0a4ef081c3a604886e6ac4`;
+const API_KEY = `79596fb1d886465fa41e5fb88fa54f21`;
+// const API_KEY = `4a1471f63a0a4ef081c3a604886e6ac4`; 휘호씨꺼
+// const API_KEY = `75fffe6a3ca84052a5f814a0e58a0643`; 내꺼
+
+
 let recipesList = [];
 const category = document.querySelectorAll('.nation-category button')
 
@@ -69,20 +73,34 @@ const searchRender=()=>{
     document.getElementById('search-board').innerHTML=recipeHTML;
 }
 
-const recipeRender=(data)=>{
+
+
+
+
+const recipeRender = (data) => {
     const { title, image, summary, winePairing } = data;
     const pairingText = winePairing.pairingText;
     let recipeHTML = `<div class="row info-area">
-    <div class="col-lg-6" name="tag2">
-      <p style="font-size:30px;" class="text-center">${title}</p>
-      <div><img src="${image}" style="width:100%;"></div>
-    </div>
-    <div class="col-lg-6">
-      <div><b>Summary</b> : ${summary}</div>
-      <div class="mt-5"><b>Wine Pairing</b> : ${pairingText}</div>
-    </div>
-  </div>`;
-    document.getElementById('recipe-board').innerHTML=recipeHTML;
+        <div class="col-lg-6" name="tag2">
+            <p style="font-size:30px;" class="text-center">${title}</p>
+            <div><img src="${image}" style="width:100%;"></div>
+            <div class="mt-5"><b>Summary</b> : ${summary}</div>
+        </div>
+        <div class="col-lg-6">
+            <div class="mt-5"><b>Ingredients</b> :</div>
+            <ul>`;
+
+    // 재료 목록을 순회하면서 리스트 항목을 추가합니다.
+    data.extendedIngredients.forEach(ingredient => {
+        recipeHTML += `<li>${ingredient.original}</li>`;
+    });
+
+    recipeHTML += `</ul>
+            <div class="mt-5"><b>Wine Pairing</b> : ${pairingText}</div>
+        </div>
+    </div>`;
+
+    document.getElementById('recipe-board').innerHTML = recipeHTML;
 }
 
 getRecipe()
