@@ -51,6 +51,22 @@ const getInfo=async(id)=>{
     recipeRender(infoData, instructionsData);
 }
 
+const getInfo2=async(id)=>{
+    const infoUrl = new URL(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`);
+    console.log("four", infoUrl)
+    const response = await fetch(infoUrl);
+    const infoData = await response.json();
+    recipesList = infoData;
+    console.log("six", infoData);
+    recipeRender(infoData)
+
+    const instructionsUrl = new URL(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${API_KEY}`);
+    const instructionsResponse = await fetch(instructionsUrl);
+    const instructionsData = await instructionsResponse.json();
+
+    recipeRender2(infoData, instructionsData);
+}
+
 const render=()=>{
     let recipeHTML = ``;
     recipeHTML = recipesList.map(
@@ -67,10 +83,10 @@ const searchRender=()=>{
     let recipeHTML = ``;
     recipeHTML = recipesList.map(
         recipe=>`<div class="col-md-3 col-sm-6 text-center">        
-        <div class="recipe-info">
+        <a href="#tag1" onclick='getInfo2(${recipe.id})'>
             <img src=${recipe.image} class="menu-images">
             <h4>${recipe.title}</h4>        
-        </div>            
+        </a>            
     </div>`).join('');
     document.getElementById('search-board').innerHTML=recipeHTML;
 }
@@ -78,8 +94,14 @@ const searchRender=()=>{
 
 
 const recipeRender = (infoData, instructionsData) => {
-    const { title, image, summary, winePairing } = infoData;
+    const { title, image, summary, winePairing, extendedIngredients } = infoData;
         const pairingText = winePairing ? winePairing.pairingText : "N/A";
+
+        let ingredientsList = "<ul>";
+        extendedIngredients.forEach(ingredient => {
+            ingredientsList += `<li>${ingredient.original}</li>`;
+        });
+        ingredientsList += "</ul>";
 
         let recipeHTML = `<div class="row info-area">
             <div class="col-lg-6" name="tag2">
@@ -89,6 +111,7 @@ const recipeRender = (infoData, instructionsData) => {
             <div class="col-lg-6">
                 <div><b>Summary</b> : ${summary}</div>
                 <div class="mt-5"><b>Wine Pairing</b> : ${pairingText}</div>
+                <div class="mt-5"><b>Ingredients</b> : ${ingredientsList}</div>
             </div>
         </div>`;
 
@@ -101,6 +124,39 @@ const recipeRender = (infoData, instructionsData) => {
         }
 
         document.getElementById('recipe-board').innerHTML = recipeHTML;
+}
+
+const recipeRender2 = (infoData, instructionsData) => {
+    const { title, image, summary, winePairing, extendedIngredients } = infoData;
+        const pairingText = winePairing ? winePairing.pairingText : "N/A";
+
+        let ingredientsList = "<ul>";
+        extendedIngredients.forEach(ingredient => {
+            ingredientsList += `<li>${ingredient.original}</li>`;
+        });
+        ingredientsList += "</ul>";
+
+        let recipeHTML = `<div class="row info-area">
+            <div class="col-lg-6" name="tag1">
+                <p style="font-size:30px;" class="text-center">${title}</p>
+                <div><img src="${image}" style="width:100%;"></div>
+            </div>
+            <div class="col-lg-6">
+                <div><b>Summary</b> : ${summary}</div>
+                <div class="mt-5"><b>Wine Pairing</b> : ${pairingText}</div>
+                <div class="mt-5"><b>Ingredients</b> : ${ingredientsList}</div>
+            </div>
+        </div>`;
+
+        if (instructionsData && instructionsData.length > 0) {
+            const steps = instructionsData[0].steps;
+            recipeHTML += `<div><b>Instructions</b>:</div>`;
+            steps.forEach(stepObj => {
+                recipeHTML += `<div>Step ${stepObj.number}: ${stepObj.step}</div>`;
+            });
+        }
+
+        document.getElementById('search-board').innerHTML = recipeHTML;
 }
 
 // const recipeRender=(infoData, instructionsData)=>{
