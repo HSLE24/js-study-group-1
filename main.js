@@ -34,6 +34,7 @@ fetch(`https://api.spoonacular.com/recipes/${recipeId}/similar?apiKey=${API_KEY}
     // 추천 레시피 이미지 추가
     data.slice(0, 2).forEach((recipe, index) => {
       const recommendationImageElement = recommendationImages[index]; // 이미지를 보여줄 요소
+      const recommendationNameElement = document.getElementById(`recommendationName${index + 1}`); // 추천 레시피 이름을 표시할 요소
       fetch(`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`) // 이미지의 유형을 알고 있을 경우에는 확장자를 명시적으로 지정합니다.
         .then(response => {
           if (!response.ok) {
@@ -44,7 +45,7 @@ fetch(`https://api.spoonacular.com/recipes/${recipeId}/similar?apiKey=${API_KEY}
         .then(blob => {
           const imageUrl = URL.createObjectURL(blob);
           recommendationImageElement.src = imageUrl;
-          recommendationImageElement.alt = recipe.title;
+          recommendationNameElement.textContent = recipe.title;
         })
         .catch(error => {
           console.error('이미지를 불러오는 중 오류가 발생했습니다:', error);
