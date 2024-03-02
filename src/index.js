@@ -1,90 +1,88 @@
-const API_KEY = ""
-let info = []
-let todayMenuData = []
-let veganMenuData = []
-let imgCnt = 5;
+const API_KEY = `4a1471f63a0a4ef081c3a604886e6ac4`;
+let recipesList = [];
+const category = document.querySelectorAll('.nation-category button')
 
-const getAPIData = async () => {
-    const url = new URL(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=pasta&maxFat=25&number=2`
-    );
+category.forEach(category=>category.addEventListener("click",(event)=>
+recipesByCategory(event)))
 
-    const response = await fetch(url);
-    const APIdata = await response.json();
 
-    console.log(APIdata)
+const getRecipe=async()=>{
+    const url = new URL(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=16`);
     
-    info = APIdata.results
-
+    const response = await fetch(url);
+    const data = await response.json();
+    recipesList = data.results;
     render();
 }
 
-function render(){
-    let resultHTML = '';
-
-    for (let i = 0; i < info.length; i++){
-        resultHTML += `
-            <div id="${info[i].id}">
-                <div>TITLE: ${info[i].title}</div>
-                <img src="${info[i].image}" class="food-img">
-            </div>
-        `
-    }
-
-    document.getElementById("food-list").innerHTML = resultHTML;
-
-}
-
-//getAPIData();
-
-const getRecommendationMenuData = async () => {
-
-    let url = new URL(
-        `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=5&exclude-tags=vegetarian`
-    );
-
-    let response = await fetch(url);
-    let APIData = await response.json();
-
-    todayMenuData = APIData.recipes;
+const recipesByCategory=async(event)=>{
+    const cuisine = event.target.textContent;
+    console.log("best", cuisine)
+    const url = new URL(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&cuisine=${cuisine}&number=16`)
+    const response = await fetch(url);
+    const data = await response.json();
     
-    renderTodayMenu();
-
-    url = new URL(
-        `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&number=5&include-tags=vegetarian`
-    );
-
-    response = await fetch(url);
-    APIData = await response.json();
-
-    veganMenuData = APIData.recipes;
-
-    renderVeganMenu();
+    recipesList = data.results;
+    render();
 }
 
-function renderTodayMenu(){
-    let resultHTML = "";
-
-    for (let i = 0; i < todayMenuData.length; i++){
-        resultHTML += `
-                <img class="RecommendationMenu-item" src="${todayMenuData[i].image}" href="./recipe.html?id=${todayMenuData[i].id}" title=${todayMenuData[i].title}>
-        `
-    }
-
-    document.getElementById("todayMenu-list").innerHTML = resultHTML;
+const getRecipeByKeyword=async()=>{
+    const keyword = document.getElementById('search-input').value;
+    const url = new URL(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${keyword}&number=16`)
+    const response = await fetch(url);
+    const data = await response.json();
+    recipesList = data.results;
+    searchRender();
 }
 
-
-function renderVeganMenu(){
-    let resultHTML = "";
-
-    for (let i = 0; i < veganMenuData.length; i++){
-        resultHTML += `
-                <img class="RecommendationMenu-item" src="${veganMenuData[i].image}" href="./recipe.html?id=${veganMenuData[i].id}" title=${veganMenuData[i].title}>
-        `
-    }
-
-    document.getElementById("veganMenu-list").innerHTML = resultHTML;
+const getInfo=async(id)=>{
+    const url = new URL(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`);
+    console.log("four", url)
+    const response = await fetch(url);
+    const data = await response.json();
+    recipesList = data;
+    console.log("six", data);
+    recipeRender(data)
 }
 
-getRecommendationMenuData();
+const render=()=>{
+    let recipeHTML = ``;
+    recipeHTML = recipesList.map(
+        recipe=>`<div class="col-md-3 col-sm-6 text-center">        
+        <a href="#tag2" onclick='getInfo(${recipe.id})'>
+            <img src=${recipe.image} class="menu-images">
+            <h4>${recipe.title}</h4>
+        </a>            
+    </div>`).join('');
+    document.getElementById('recipe-board').innerHTML=recipeHTML;
+}
+
+const searchRender=()=>{
+    let recipeHTML = ``;
+    recipeHTML = recipesList.map(
+        recipe=>`<div class="col-md-3 col-sm-6 text-center">        
+        <div class="recipe-info">
+            <img src=${recipe.image} class="menu-images">
+            <h4>${recipe.title}</h4>        
+        </div>            
+    </div>`).join('');
+    document.getElementById('search-board').innerHTML=recipeHTML;
+}
+
+const recipeRender=(data)=>{
+    const { title, image, summary, winePairing } = data;
+    const pairingText = winePairing.pairingText;
+    let recipeHTML = `<div class="row info-area">
+    <div class="col-lg-6" name="tag2">
+      <p style="font-size:30px;" class="text-center">${title}</p>
+      <div><img src="${image}" style="width:100%;"></div>
+    </div>
+    <div class="col-lg-6">
+      <div><b>Summary</b> : ${summary}</div>
+      <div class="mt-5"><b>Wine Pairing</b> : ${pairingText}</div>
+    </div>
+  </div>`;
+    document.getElementById('recipe-board').innerHTML=recipeHTML;
+}
+
+getRecipe()
