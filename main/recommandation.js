@@ -1,4 +1,4 @@
-const API_KEY_rec = "b00bbb5eec1542ab82a2fd633b75c407"//"7dccf51e73e141d3844446d0dabc01f1"
+const API_KEY_rec = "79596fb1d886465fa41e5fb88fa54f21"//"7dccf51e73e141d3844446d0dabc01f1"
 
 let veganMenuData = []
 let glutenFreeData = []
