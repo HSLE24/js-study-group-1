@@ -1,4 +1,6 @@
-const API_KEY = "7dccf51e73e141d3844446d0dabc01f1"// `4a1471f63a0a4ef081c3a604886e6ac4`;
+// const API_KEY = "7dccf51e73e141d3844446d0dabc01f1"// `4a1471f63a0a4ef081c3a604886e6ac4`;
+const API_KEY = "4a1471f63a0a4ef081c3a604886e6ac4"// `7dccf51e73e141d3844446d0dabc01f1`;
+
 let recipesList = [];
 const category = document.querySelectorAll('.nation-category button')
 
@@ -120,7 +122,7 @@ const recipeRender = (infoData, instructionsData) => {
             <p style="font-size:30px;" class="text-center">${title}</p>
             
             <div><img src="${image}" style="width:100%;"></div>
-            <div class="mt-5"><b>Summary</b> : ${summary}</div>
+            <div class="mt-5"><b>Summary</b> : <span class="summary">${summary}</span></div>
             <div class="mt-3 text-center">
                 <button class="toggle-button" onclick="toggleIngredients(${id})">Ingredients</button>
                 <button class="toggle-button" onclick="toggleInstructions(${id})">Instructions</button>
@@ -200,5 +202,17 @@ function toggleElement() {
     var element = document.getElementById("toggle-element");
     element.classList.toggle("hidden");
 }
+
+// side 바 햄버거 생성
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('sidebar');
+
+    // Toggle sidebar when hamburger icon is clicked
+    hamburger.addEventListener('click', function() {
+        sidebar.style.left = sidebar.style.left === '-250px' ? '0' : '-250px';
+    });
+});
+// side 바 햄버거 생성
 
 getRecipe()
