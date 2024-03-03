@@ -64,6 +64,7 @@ a{
     display: flex;
     justify-content: center;
 }
+
 .nation-category:hover{
     color:white;
 }
@@ -125,7 +126,8 @@ a:hover{
     border:1px solid rgb(155, 118, 101);
     padding:10px;
     margin-left: 1em;
-    width: 150px;
+    margin-bottom:1em;
+    width: 100px;
 }
 .nation-category button:hover{
     background-color: rgb(155, 118, 101);
@@ -213,15 +215,23 @@ footer{
 @media screen and (max-width:1000px){
     .footer-top{
         display:block;
+        padding-left:20px;
     }
     .footer-bottom{
         display:block;
+        padding-left:20px;
+    }
+    .footer-mid{
+        padding-left: 20px;
     }
     .footer-line{
         flex-direction: column;
     }
     .footer-bottom2{
         display:none;
+    }
+    .nation-category button{
+        margin:0;
     }
 }
 .recipe-info{
