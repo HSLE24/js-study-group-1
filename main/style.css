@@ -233,6 +233,9 @@ footer{
     .nation-category button{
         margin:0;
     }
+    .login-item{
+        display:none;
+    }
 }
 
 @media screen and (max-width:400px){

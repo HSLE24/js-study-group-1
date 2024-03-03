@@ -129,15 +129,26 @@ footer{
 @media screen and (max-width:1000px){
   .footer-top{
       display:block;
+      padding-left:20px;
   }
   .footer-bottom{
       display:block;
+      padding-left:20px;
+  }
+  .footer-mid{
+    padding-left: 20px;
   }
   .footer-line{
       flex-direction: column;
   }
   .footer-bottom2{
       display:none;
+  }
+  .login-item{
+    display:none;
+  }
+  .card iframe{
+    width:350px;
   }
 }
 .youtube-zone{
@@ -152,7 +163,7 @@ footer{
   border:none;
 }
 .card-body{
-  width:450px;
+  width:380px;
 }
 .btn-primary{
   background-color: rgb(191, 145, 126);
@@ -166,7 +177,6 @@ footer{
 .logo-text{
   padding-left: 10px;
 }
-
 
 /* 햄버거 아이콘 */
 .hamburger {
