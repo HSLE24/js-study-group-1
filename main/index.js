@@ -1,4 +1,4 @@
-const API_KEY = "4a1471f63a0a4ef081c3a604886e6ac4"// `4a1471f63a0a4ef081c3a604886e6ac4`;7dccf51e73e141d3844446d0dabc01f1
+const API_KEY = ""//`4a1471f63a0a4ef081c3a604886e6ac4`;
 let recipesList = [];
 const category = document.querySelectorAll('.nation-category button')
 
@@ -125,14 +125,29 @@ const recipeRender = (infoData, instructionsData) => {
                 <button class="toggle-button" onclick="toggleIngredients(${id})">Ingredients</button>
                 <button class="toggle-button" onclick="toggleInstructions(${id})">Instructions</button>
                 <button class="toggle-button" onclick="toggleWinePairing(${id})">Wine Pairing</button>
+                <button class="toggle-button" onclick="toggleOtherRecommendedRecipes(${id})">Other Recipes</button>
             </div>
         </div>
         <div class="col-lg-12">
             <div id="ingredients-${id}" style="display: none;"><b>Ingredients</b>: ${ingredientsList}</div>
             <div id="instructions-${id}" style="display: none;"><b>Instructions</b>: ${instructionsList}</div>
             <div id="wine-pairing-${id}" style="display: none;"><b>Wine Pairing</b>: ${pairingText}</div>
+            <div id="recommended-recipes-${id}" class="another-recommendation-area" style="display: none;">
+                <p class="another-recommendation-title"><strong>Other Recommended Recipes</strong></p>
+                <div class="recommendation-group">
+                    <div class="recommendation-layer">
+                        <img src="./image/waitaminute.JPG" alt="추천1" id="recommendationImage1">
+                        <div id="recommendationName1">Anchovies Appetizer With Breadcrumbs & Scallions</div>
+                    </div>
+                    <div class="recommendation-layer">
+                        <img src="./image/waitaminute.JPG" alt="추천2" id="recommendationImage2">
+                        <div id="recommendationName2">Pasta With Cauliflower, Sausage, & Breadcrumbs</div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>`;
+    </div>
+    `;
 
     document.getElementById('recipe-board').innerHTML = recipeHTML;
 }
@@ -168,12 +183,26 @@ const recipeRender2 = (infoData, instructionsData) => {
                 <button class="toggle-button" onclick="toggleIngredients(${id})">Ingredients</button>
                 <button class="toggle-button" onclick="toggleInstructions(${id})">Instructions</button>
                 <button class="toggle-button" onclick="toggleWinePairing(${id})">Wine Pairing</button>
+                <button class="toggle-button" onclick="toggleOtherRecommendedRecipes(${id})">Other Recipes</button>
             </div>
         </div>
         <div class="col-lg-12">
             <div id="ingredients-${id}" style="display: none;"><b>Ingredients</b>: ${ingredientsList}</div>
             <div id="instructions-${id}" style="display: none;"><b>Instructions</b>: ${instructionsList}</div>
             <div id="wine-pairing-${id}" style="display: none;"><b>Wine Pairing</b>: ${pairingText}</div>
+            <div id="recommended-recipes-${id}" class="another-recommendation-area" style="display: none;">
+                <p class="another-recommendation-title"><strong>Other Recommended Recipes</strong></p>
+                <div class="recommendation-group">
+                    <div class="recommendation-layer">
+                        <img src="./image/waitaminute.JPG" alt="추천1" id="recommendationImage1">
+                        <div id="recommendationName1">Anchovies Appetizer With Breadcrumbs & Scallions</div>
+                    </div>
+                    <div class="recommendation-layer">
+                        <img src="./image/waitaminute.JPG" alt="추천2" id="recommendationImage2">
+                        <div id="recommendationName2">Pasta With Cauliflower, Sausage, & Breadcrumbs</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>`;
 
@@ -214,3 +243,48 @@ document.addEventListener('DOMContentLoaded', function() {
 // side 바 햄버거 생성
 
 getRecipe()
+
+//이삭님 코드
+const toggleOtherRecommendedRecipes = (recipeId) => {
+
+    const recommendedRecipesSection = document.getElementById(`recommended-recipes-${recipeId}`);
+
+    if (recommendedRecipesSection.style.display === 'none'){
+        const recommendationImages = document.querySelectorAll(`#recommended-recipes-${recipeId} img`);
+
+        fetch(`https://api.spoonacular.com/recipes/${recipeId}/similar?apiKey=${API_KEY}`)
+        .then(response => {
+        if (!response.ok) {
+            throw new Error('API 요청 중 문제가 발생했습니다.');
+        }
+        return response.json();
+        })
+        .then(data => {
+        // 추천 레시피 이미지 추가
+        data.slice(0, 2).forEach((recipe, index) => {
+            const recommendationImageElement = recommendationImages[index]; // 이미지를 보여줄 요소
+            const recommendationNameElement = document.getElementById(`recommendationName${index + 1}`); // 추천 레시피 이름을 표시할 요소
+            fetch(`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`) // 이미지의 유형을 알고 있을 경우에는 확장자를 명시적으로 지정합니다.
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('이미지를 불러오는 중 문제가 발생했습니다.');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const imageUrl = URL.createObjectURL(blob);
+                recommendationImageElement.src = imageUrl;
+                recommendationNameElement.textContent = recipe.title;
+            })
+            .catch(error => {
+                console.error('이미지를 불러오는 중 오류가 발생했습니다:', error);
+            });
+        });
+        })
+        .catch(error => {
+        console.error('API 요청 중 오류가 발생했습니다:', error);
+        });
+    }
+
+    recommendedRecipesSection.style.display = recommendedRecipesSection.style.display === 'none' ? 'block' : 'none';
+}
