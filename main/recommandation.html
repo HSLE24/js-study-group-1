@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taste the world</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./recommendation.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./image/favicon-96x96.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+</head>
+<body>
+      
+      <!-- 햄버거 side 바 생성 -->
+      <!-- 햄버거 아이콘 -->
+    <div class="hamburger" id="hamburger">
+      <i id="hamburger-icon" class="fas fa-bars"></i>
+    </div>
+
+    <!-- Side Bar -->
+    <aside class="sidebar" id="sidebar">
+      <ul>
+          <li><a href="./index.html">Search</a></li>
+          <li><a href="./recommandation.html">Recommend</a></li>
+          <li><a href="../youtube/youtube.html">Video</a></li>
+      </ul>
+    </aside>
+      <!-- 햄버거 side 바 생성 -->
+
+    <nav>
+        <div class="nav-board">
+          <div class="nav-top">
+            <div class="logo">          
+              <a href="#">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M39.906 27.188c-9.118 13.907-11.366 30.99-7.843 50.718 4.2 23.526 16.91 50.038 35.28 75 36.742 49.925 96.05 93.082 148.813 99.625l3.688.47 2.375 2.844L416.374 490.22c19.352 4.624 31.847 1.745 38.344-4.69 6.547-6.484 9.566-19.005 4.717-38.874L39.908 27.187zM414.97 29.5L306.47 138c-12 11.998-12.104 25.2-5.908 39.625l2.563 5.97-4.688 4.5L262 222.844l29.594 29.593 34.594-36.532 4.5-4.75 5.968 2.594c15.165 6.535 29.546 6.267 40.688-4.875l108.5-108.5L471.75 86.28l-70.563 70.532L388 143.595l70.53-70.53L443.5 58.03l-70.53 70.532-13.22-13.218 70.53-70.53-15.31-15.314zM210.936 271.563L25.53 448.469c-4.575 18.95-1.644 30.787 4.532 36.905 6.178 6.118 18.128 8.927 36.844 4.406l173.22-182.967-29.19-35.25z"></path></svg>
+                <span class="logo-text">Taste the world</span>
+              </a>
+              
+            </div>
+            <div class="login">
+              <a href="#">
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 7A5 5 0 1 1 7 7a5 5 0 0 1 10 0ZM7.39 12.5s1.766 1.816 4.61 1.816c2.844 0 4.61-1.816 4.61-1.816l.242.234c1.515 1.461 2.66 3.271 3.135 7.253.13 1.09-.705 2.013-1.741 2.013H5.753c-1.036 0-1.87-.923-1.74-2.013.475-3.982.698-5.485 3.21-7.366.064-.048.166-.121.166-.121Z" fill="#616161"></path></svg>
+                <span class="login-item">Login</span>
+              </a>
+            </div>
+          </div>
+          <div class="nav-bottom">
+            <button><a href="./index.html">Search</a></button>
+            <button><a href="./recommandation.html">Recommend</a></button>
+            <button><a href="../youtube/youtube.html">video</a></button>
+          </div>
+        </div>
+        
+    </nav>
+    <div class="container text-center">
+        <main class="Menu-group" id="Menu-group-div">
+            <section class="veganMenu-group">
+                <h1 class="menu-title">VEGAN MENU</h1>
+                <h2 class="menu-comment">Today's recommended vegan menu.</h2>
+                <div class="interval"></div>
+                <div id="veganMenu-list" class="veganMenu-list-style"></div>
+            </section>
+            <section class="row recipe-line" id="vegan-recipe-board">
+
+            </section>
+            <section class="veganMenu-group change-color">
+                <h1 class="menu-title">GLUTEN FREE MENU</h1>
+                <h2 class="menu-comment">Today's recommended gluten free menu.</h2>
+                <div class="interval"></div>
+                <div id="gluten-free-list" class="veganMenu-list-style"></div>
+            </section>
+            <section class="row recipe-line" id="gluten-free-recipe-board">
+              
+            </section>
+            <section class="veganMenu-group">
+                <h1 class="menu-title">TODAY's DESSERT</h1>
+                <h2 class="menu-comment">Today's recommended dessert.</h2>
+                <div class="interval"></div>
+                <div id="dessert-list" class="veganMenu-list-style"></div>
+            </section>
+            <section class="row recipe-line" id="dessert-recipe-board">
+              
+            </section>
+            <div class="interval"></div>
+        </main>
+    </div>
+    <footer>
+        <div class="footer-top">
+          <div>
+            <div>
+              <h4>고객센터</h4>
+              <div class="footer-button">
+                <button>전화번호</button>
+                <button>문의하기</button>
+              </div>
+            </div>
+            <div>
+              <p>운영시간</p>
+              <p>
+                전화문의 - 10:00 ~ 12:00, 13:00 ~ 17:00<br/>
+                1:1 문의 - 09:00 ~ 12:00, 13:00 ~ 17:30
+              </p>
+            </div>
+          </div>
+          <div class="sns-area">
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+          </div>
+        </div>
+    
+    
+    
+    
+        <div class="footer-mid">
+          <div>
+            <a href="#">이용약관</a>
+            <a href="#">개인정보처리방침</a>
+            <a href="#">공지사항</a>
+            <a href="#">자주묻는질문</a>
+          </div>
+        </div>
+    
+    
+    
+        <div class="footer-bottom">
+          <div>
+            <p>(주)컬쳐히어로</p>
+            <div class="footer-line">
+              <p>상호 : (주)컬쳐히어로</p>
+              <p>대표자 : 양준규</p>
+              <p>개인정보관리책임자 : 장호진</p>
+              <p>사업자 등록번호 : 144-81-35400</p>
+            </div>
+            <div class="footer-line">
+              <p>통신판매업 신고 : 제 2015-경기성남-1940 호</p>
+              <p>전화 : 1833-8307</p>
+              <p>팩스 : 031-8017-1800</p>
+            </div>
+            <div class="footer-line">
+              <p>주소 : (13487) 경기도 성남시 분당구 삼평동625 판교세븐벤처밸리1단지 제3동 1001호</p>
+              <p>이메일 : commerce@culturehero.net</p>
+            </div>
+          </div>
+    
+          <div class="footer-bottom2">
+            <h4>Taste the world</h4>
+            <p>© 2018 by Culturehero. All rights are reserved.</p>
+          </div>
+        </div>
+    </footer>
+    <script src="./recommandation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

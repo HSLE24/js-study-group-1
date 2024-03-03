@@ -1,0 +1,284 @@
+p{
+  margin-bottom:10px;   
+}
+nav{
+  border-bottom:1px solid rgba(224, 224, 224, 0.5);
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+  background-color: white;
+}
+a{
+  text-decoration: none;
+  color:black;
+  margin-right:10px;
+}
+.nav-board{
+  position: relative;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0px auto;
+}
+.nav-top{
+  display:flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.nav-bottom{
+  display:flex;
+  padding:10px 0;
+  gap:2rem;
+}
+.nav-bottom button{
+  background-color: white;
+  border:none;
+  font-size:25px;
+}
+.nav-bottom button:hover{
+  color:rgb(191, 145, 126);
+}
+.logo a{
+  color:rgb(191, 145, 126);
+  display:flex;
+  align-items: center;
+  font-size:30px;
+}
+.login a{
+  line-height: 45px;
+  font-size:20px;
+  color:rgb(97, 97, 97);
+}
+
+.menu-buttons button{
+  background-color: transparent;
+  border:none;
+  font-size:1.5rem;
+}
+.menu-buttons button:hover{
+  scale:1.1;
+}
+footer{
+  border-top:1px solid rgb(158, 158, 158)
+}
+.footer-top{
+  display:flex;
+  width:100%;
+  max-width:1024px;
+  justify-content: space-between;
+  margin:20px auto;
+}
+.footer-mid{
+  background-color: rgb(238, 238, 238);
+  padding:10px;
+}
+.footer-mid div{
+  width:100%;
+  max-width:1024px;
+  margin:0 auto;
+  font-size:12px;
+}
+
+.footer-bottom{
+  display:flex;
+  width:100%;
+  max-width:1024px;
+  justify-content: space-between;
+  margin:20px auto;
+}
+.footer-line{
+  display:flex;
+}
+.footer-line p{
+  font-size:12px;
+  margin-bottom: 5px;
+  margin-right:15px;
+}
+.footer-bottom2{
+  display:flex;
+  font-size:12px;
+  flex-direction: column;
+  justify-content: center;
+}
+.footer-bottom2 h4{
+  float:right;
+}
+.footer-button{
+  margin:20px 0;
+}
+.footer-button button{
+  background-color: white;
+  border:1px solid rgb(191, 145, 126);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.footer-button button:hover{
+  background-color: rgb(191, 145, 126);
+  color:white;
+}
+.sns-area{
+  display:flex;
+  align-items: center;
+  gap:10px;
+}
+.sns-area a{
+  font-size:30px;
+}
+.sns-area a:hover{
+  color:rgb(191, 145, 126);
+}
+@media screen and (max-width:1000px){
+  .footer-top{
+      display:block;
+      padding-left:20px;
+  }
+  .footer-bottom{
+      display:block;
+      padding-left:20px;
+  }
+  .footer-mid{
+    padding-left: 20px;
+  }
+  .footer-line{
+      flex-direction: column;
+  }
+  .footer-bottom2{
+      display:none;
+  }
+  .login-item{
+    display:none;
+  }
+  .card iframe{
+    width:375px;
+  }
+}
+.youtube-zone{
+  width:100%;
+  max-width:1024px;
+  margin:0 auto;
+}
+.youtube-title{
+  font-size : 20px;
+}
+.card{
+  border:none;
+}
+.card-body{
+  width:380px;
+}
+.btn-primary{
+  background-color: rgb(191, 145, 126);
+  color:white;
+  border:none;
+}
+.btn-primary:hover{
+  scale:1.1;
+  background-color: rgb(191, 145, 126);
+}
+.logo-text{
+  padding-left: 10px;
+}
+
+/* 햄버거 아이콘 */
+.hamburger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.hamburger i {
+  font-size: 24px;
+}
+
+/* Side Bar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* 초기에는 화면 왼쪽으로 숨겨져 있음 */
+  width: 250px;
+  height: 100%;
+  background-color: #cdac41; /* 사이드바 배경색 */
+  transition: left 0.5s ease; /* 사이드바 슬라이딩 애니메이션 */
+  z-index: 999;
+  
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 20px;
+  margin-top: 5em;
+  line-height: 2em;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  color: #fff; /* 링크 텍스트 색상 */
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s; /* 링크 색상 전환 애니메이션 */
+}
+
+.sidebar ul li a:hover {
+  color: #f0f0f0; /* 호버 시 링크 텍스트 색상 */
+}
+
+/* 햄버거 아이콘은 모바일에서만 표시되도록 설정 */
+@media screen and (max-width: 768px) {
+  .nav-bottom {
+      display: none; /* 모바일 화면에서 네비게이션 바 숨김 */
+  }
+  
+  #hamburger-icon {
+      display: block; /* 모바일 화면에서 햄버거 아이콘 표시 */
+      text-align: center;
+      margin-top: 1.8em;
+      color: grey;
+      margin-left: -0.1em;
+      
+  }
+
+  .recipe-main-comment{
+      text-align: center;
+      width: 300px;
+  }
+
+  .recipe-main-comment-search{
+      text-align: center;
+      width: 300px;
+      margin-left:1.8em;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #hamburger-icon {
+      display: none;
+      color: #f0f0f0;
+  }
+
+  .sidebar {
+      display: none;
+  }
+}
+  
+.recommendation-group{
+  display: flex;
+  justify-content: center;
+}
+.another-recommendation-area{
+  margin-top: 0.2em;
+}
+.recommendation-layer img{
+  max-width: 238px;
+  padding: 0.5em;
+}
+.recommendation-layer div{
+  max-width: 238px;
+  text-align: center;
+}
+.another-recommendation-title{
+  padding: 0.3em -0.1em 0.1em 0.2em;
+}

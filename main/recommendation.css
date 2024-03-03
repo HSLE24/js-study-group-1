@@ -1,0 +1,111 @@
+.container {
+    width: 100%;
+    max-width: 100vw;
+}
+
+.food-title {
+    font-weight: bold;
+}
+
+.veganMenu-group{
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 80px 18px;
+}
+
+.change-color{
+    background: rgb(244, 240, 239);
+    border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+.interval {
+    margin: 2em;
+}
+
+.veganMenu-list-style {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: flex-start;
+    gap: 56px 20px;
+    margin: 0px;
+}
+
+.VeganMenu-item img {
+    width: 328px;
+    height: 100%;
+    object-fit: fill;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+}
+
+.VeganMenu-caption {
+    height: 60px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 328px;
+    padding: 4px 8px;
+    background: rgba(147, 112, 98, 0.9);
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    top: 40px;
+}
+
+.VeganMenu-caption a {
+    padding-top: 0.5em;
+    text-decoration: none;
+    font-size: large;
+    color: white;
+    font-weight: bold;
+}
+.VeganMenu-caption a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1023px) {
+    /* 모바일용 미디어 쿼리 */
+    .Menu-group{
+        padding-top: 40px;
+    }
+    .veganMenu-group {
+        padding: 40px 0px;
+    }
+    
+    .VeganMenu-item-chile-2 {
+        display: none;
+    }
+
+    .veganMenu-list-style {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 아이폰 용 미디어 쿼리 */
+@media only screen and (max-width: 400px) {
+    .veganMenu-group{
+        padding-top: 40px;
+    }
+
+    .interval {
+        margin: 2em;
+    }
+
+    .VeganMenu-item-chile-0,
+    .VeganMenu-item-chile-2 {
+        display: none;
+    }
+
+    .veganMenu-list-style {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.recipe-text-align{
+    display: none; 
+    text-align:left;
+}
