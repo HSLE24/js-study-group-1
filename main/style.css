@@ -321,6 +321,92 @@ footer{
     padding-left: 10px;
 }
 
+/* summary 내 a 링크 비활성화 */
+.summary a {
+    pointer-events: none;
+}
+
+.summary :hover {
+    cursor: text;
+}
+
+
+
+/* 햄버거 아이콘 */
+.hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.hamburger i {
+    font-size: 24px;
+}
+
+/* Side Bar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* 초기에는 화면 왼쪽으로 숨겨져 있음 */
+    width: 250px;
+    height: 100%;
+    background-color: #cdac41; /* 사이드바 배경색 */
+    transition: left 0.5s ease; /* 사이드바 슬라이딩 애니메이션 */
+    z-index: 999;
+    
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 20px;
+    margin-top: 5em;
+    line-height: 2em;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #fff; /* 링크 텍스트 색상 */
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s; /* 링크 색상 전환 애니메이션 */
+}
+
+.sidebar ul li a:hover {
+    color: #f0f0f0; /* 호버 시 링크 텍스트 색상 */
+}
+
+/* 햄버거 아이콘은 모바일에서만 표시되도록 설정 */
+@media screen and (max-width: 768px) {
+    .nav-bottom {
+        display: none; /* 모바일 화면에서 네비게이션 바 숨김 */
+    }
+    
+    #hamburger-icon {
+        display: block; /* 모바일 화면에서 햄버거 아이콘 표시 */
+        text-align: center;
+        margin-top: 1.8em;
+        color: grey;
+        margin-left: -0.1em;
+        
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #hamburger-icon {
+        display: none;
+        color: #f0f0f0;
+    }
+
+    .sidebar {
+        display: none;
+    }
+}
+    
 .recommendation-group{
     display: flex;
     justify-content: center;
