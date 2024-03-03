@@ -259,3 +259,42 @@ footer{
     color:white;
     transition: 1s;
 }
+
+.main-img-list{
+    padding-top :1em;
+}
+.search-input-style{
+    margin: 1em 5px 0 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(191, 145, 126);
+    padding: 5px 15px 5px 40px;
+    width: 250px;
+}
+.search-button {
+    background-color: rgb(191, 145, 126);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    
+}
+.search-button:hover {
+    background-color: rgb(215, 76, 185);
+    color:white;
+    transition: 1s;
+}
+.search-icon{
+    color: rgb(191, 145, 126);
+    position: relative;
+    left: 40px;
+}
+.logo-text{
+    padding-left: 10px;
+}
