@@ -298,3 +298,21 @@ footer{
 .logo-text{
     padding-left: 10px;
 }
+
+.recommendation-group{
+    display: flex;
+    justify-content: start;
+}
+.another-recommendation-area{
+    text-align: left;
+}
+.recommendation-layer img{
+    max-width: 238px;
+    padding: 0.5em;
+}
+.recommendation-layer div{
+    max-width: 238px;
+}
+.another-recommendation-title{
+    padding: 0.2em 0.2em;
+}

@@ -1,4 +1,4 @@
-const API_KEY = "7dccf51e73e141d3844446d0dabc01f1"// `4a1471f63a0a4ef081c3a604886e6ac4`;
+const API_KEY = ""//"ba5d7061db304fe696dfea7c181fb9ab" //`4a1471f63a0a4ef081c3a604886e6ac4`;
 let recipesList = [];
 const category = document.querySelectorAll('.nation-category button')
 
@@ -125,6 +125,7 @@ const recipeRender = (infoData, instructionsData) => {
                 <button class="toggle-button" onclick="toggleIngredients(${id})">Ingredients</button>
                 <button class="toggle-button" onclick="toggleInstructions(${id})">Instructions</button>
                 <button class="toggle-button" onclick="toggleWinePairing(${id})">Wine Pairing</button>
+                <button class="toggle-button" onclick="toggleRecommendedRecipes(${id})">Recommended Recipes</button>
             </div>
         </div>
         <div class="col-lg-12">
@@ -132,7 +133,8 @@ const recipeRender = (infoData, instructionsData) => {
             <div id="instructions-${id}" style="display: none;"><b>Instructions</b>: ${instructionsList}</div>
             <div id="wine-pairing-${id}" style="display: none;"><b>Wine Pairing</b>: ${pairingText}</div>
         </div>
-    </div>`;
+    </div>
+    `;
 
     document.getElementById('recipe-board').innerHTML = recipeHTML;
 }
@@ -202,3 +204,48 @@ function toggleElement() {
 }
 
 getRecipe()
+
+
+//이삭님 코드
+const recipeTitleElement = document.getElementById('recipeTitle');
+const recipeImageElement = document.getElementById('recipeImage');
+const recommendationImages = document.querySelectorAll('.another-recommendation-area img');
+let recommendationImageData = [];
+
+function drawAnotherRecommendationRecipe(recipeId){
+
+    fetch(`https://api.spoonacular.com/recipes/${recipeId}/similar?apiKey=${API_KEY}`)
+    .then(response => {
+    if (!response.ok) {
+        throw new Error('API 요청 중 문제가 발생했습니다.');
+    }
+    return response.json();
+    })
+    .then(data => {
+    // 추천 레시피 이미지 추가
+    data.slice(0, 2).forEach((recipe, index) => {
+        const recommendationImageElement = recommendationImages[index]; // 이미지를 보여줄 요소
+        const recommendationNameElement = document.getElementById(`recommendationName${index + 1}`); // 추천 레시피 이름을 표시할 요소
+        fetch(`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`) // 이미지의 유형을 알고 있을 경우에는 확장자를 명시적으로 지정합니다.
+        .then(response => {
+            if (!response.ok) {
+            throw new Error('이미지를 불러오는 중 문제가 발생했습니다.');
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const imageUrl = URL.createObjectURL(blob);
+            recommendationImageElement.src = imageUrl;
+            recommendationNameElement.textContent = recipe.title;
+        })
+        .catch(error => {
+            console.error('이미지를 불러오는 중 오류가 발생했습니다:', error);
+        });
+    });
+    })
+    .catch(error => {
+    console.error('API 요청 중 오류가 발생했습니다:', error);
+    });
+}
+
+drawAnotherRecommendationRecipe(716429);
