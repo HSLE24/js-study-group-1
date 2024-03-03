@@ -88,9 +88,9 @@ function renderVeganMenu(){
         }
         resultHTML += `
             <div class="VeganMenu-item VeganMenu-item-chile-${i}">
-                <a href="./recipe.html?id=${veganMenuData[i].id}"><img src="${veganMenuData[i].image}" href="./recipe.html?id=${veganMenuData[i].id}" title=${veganMenuData[i].title}></a>
+                <a href="#tag2" onclick='getInfo("vegan-recipe-board", ${veganMenuData[i].id})'><img src="${veganMenuData[i].image}" href="./recipe.html?id=${veganMenuData[i].id}" title=${veganMenuData[i].title}></a>
                 <div class="VeganMenu-caption">
-                    <a href="./recipe.html?id=${veganMenuData[i].id}"><p>${veganMenuData[i].title}</p></a>
+                    <a href="#tag2" onclick='getInfo("vegan-recipe-board", ${veganMenuData[i].id})'><p>${veganMenuData[i].title}</p></a>
                 </div>
             </div>
             `
@@ -113,9 +113,9 @@ function renderGlutenFreeMenu(){
         }
         resultHTML += `
             <div class="VeganMenu-item VeganMenu-item-chile-${i}">
-            <a href="./recipe.html?id=${glutenFreeData[i].id}"><img src="${glutenFreeData[i].image}" title=${glutenFreeData[i].title}></a>
+            <a href="#tag2" onclick='getInfo("gluten-free-recipe-board", ${glutenFreeData[i].id})'><img src="${glutenFreeData[i].image}" title=${glutenFreeData[i].title}></a>
                 <div class="VeganMenu-caption">
-                    <a href="./recipe.html?id=${glutenFreeData[i].id}"><p>${glutenFreeData[i].title}</p></a>
+                    <a href="#tag2" onclick='getInfo("gluten-free-recipe-board", ${glutenFreeData[i].id})'><p>${glutenFreeData[i].title}</p></a>
                 </div>
             </div>
             `
@@ -138,9 +138,9 @@ function renderDessertMenu(){
         }
         resultHTML += `
             <div class="VeganMenu-item VeganMenu-item-chile-${i}">
-            <a href="./recipe.html?id=${dessertMenu[i].id}"><img src="${dessertMenu[i].image}" title=${dessertMenu[i].title}></a>
+            <a href="#tag2" onclick='getInfo("dessert-recipe-board", ${dessertMenu[i].id})'><img src="${dessertMenu[i].image}" title=${dessertMenu[i].title}></a>
                 <div class="VeganMenu-caption">
-                    <a href="./recipe.html?id=${dessertMenu[i].id}"><p>${dessertMenu[i].title}</p></a>
+                    <a href="#tag2" onclick='getInfo("dessert-recipe-board", ${dessertMenu[i].id})'><p>${dessertMenu[i].title}</p></a>
                 </div>
             </div>
             `
@@ -151,3 +151,90 @@ function renderDessertMenu(){
 }
 
 getRecommendationMenuData()
+
+
+//index.js 코드 활용
+
+let recipesList = [];
+
+const getInfo=async(divId, id)=>{
+    const infoUrl = new URL(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY_rec}`);
+    console.log("four", infoUrl)
+    const response = await fetch(infoUrl);
+    const infoData = await response.json();
+    recipesList = infoData;
+    console.log("six", infoData);
+    recipeRender(divId, infoData)
+
+    const instructionsUrl = new URL(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${API_KEY_rec}`);
+    const instructionsResponse = await fetch(instructionsUrl);
+    const instructionsData = await instructionsResponse.json();
+
+    recipeRender(divId, infoData, instructionsData);
+}
+
+const recipeRender = (divId, infoData, instructionsData) => {
+    const { id, title, image, summary, winePairing, extendedIngredients } = infoData;
+    const pairingText = winePairing ? winePairing.pairingText : "N/A";
+
+    let ingredientsList = "<ul>";
+    extendedIngredients.forEach(ingredient => {
+        ingredientsList += `<li>${ingredient.original}</li>`;
+    });
+    ingredientsList += "</ul>";
+
+    let instructionsList = "";
+    if (instructionsData && instructionsData.length > 0) {
+        instructionsList = "<ol>";
+        instructionsData[0].steps.forEach(step => {
+            instructionsList += `<li>${step.step}</li>`;
+        });
+        instructionsList += "</ol>";
+    } else {
+        instructionsList = "Instructions not available.";
+    }
+
+    let recipeHTML = `<div class="row info-area">
+        <div class="col-lg-12" name="tag2">
+            <p style="font-size:30px;" class="text-center">${title}</p>
+            
+            <div><img src="${image}" style="width:100%;"></div>
+            <div class="mt-5" style="text-align:left;"><b>Summary</b> : ${summary}</div>
+            <div class="mt-3 text-center">
+                <button class="toggle-button" onclick="toggleIngredients(${id})">Ingredients</button>
+                <button class="toggle-button" onclick="toggleInstructions(${id})">Instructions</button>
+                <button class="toggle-button" onclick="toggleWinePairing(${id})">Wine Pairing</button>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div id="ingredients-${id}" class="recipe-text-align"><b>Ingredients</b>: ${ingredientsList}</div>
+            <div id="instructions-${id}" class="recipe-text-align"><b>Instructions</b>: ${instructionsList}</div>
+            <div id="wine-pairing-${id}" class="recipe-text-align"><b>Wine Pairing</b>: ${pairingText}</div>
+        </div>
+    </div>
+    <div class="interval"></div>`;
+
+    document.getElementById(divId).innerHTML = recipeHTML;
+}
+
+
+// Toggle functions for each section
+const toggleIngredients = (id) => {
+    const ingredientsSection = document.getElementById(`ingredients-${id}`);
+    ingredientsSection.style.display = ingredientsSection.style.display === 'none' ? 'block' : 'none';
+}
+
+const toggleInstructions = (id) => {
+    const instructionsSection = document.getElementById(`instructions-${id}`);
+    instructionsSection.style.display = instructionsSection.style.display === 'none' ? 'block' : 'none';
+}
+
+const toggleWinePairing = (id) => {
+    const winePairingSection = document.getElementById(`wine-pairing-${id}`);
+    winePairingSection.style.display = winePairingSection.style.display === 'none' ? 'block' : 'none';
+}
+
+function toggleElement() {
+    var element = document.getElementById("toggle-element");
+    element.classList.toggle("hidden");
+}

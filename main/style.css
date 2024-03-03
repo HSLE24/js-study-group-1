@@ -37,6 +37,9 @@ a{
 .nav-bottom button:hover{
     color:rgb(191, 145, 126);
 }
+.nav-bottom a:hover{
+    color:rgb(191, 145, 126);
+}
 .logo a{
     color:rgb(191, 145, 126);
     display:flex;
