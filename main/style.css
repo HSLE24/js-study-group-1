@@ -397,6 +397,17 @@ footer{
         margin-left: -0.1em;
         
     }
+
+    .recipe-main-comment{
+        text-align: center;
+        width: 300px;
+    }
+
+    .recipe-main-comment-search{
+        text-align: center;
+        width: 300px;
+        margin-left:1.8em;
+    }
 }
 
 @media screen and (min-width: 768px) {
