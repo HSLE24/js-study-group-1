@@ -311,19 +311,20 @@ footer{
 
 .recommendation-group{
     display: flex;
-    justify-content: start;
+    justify-content: center;
 }
 .another-recommendation-area{
     margin-top: 0.2em;
-    text-align: left;
+    text-align: center;
 }
 .recommendation-layer img{
     max-width: 238px;
     padding: 0.5em;
 }
 .recommendation-layer div{
-    max-width: 230px;
+    max-width: 238px;
+    text-align: center;
 }
 .another-recommendation-title{
-    padding: 0.3em 0.2em 0.1em 0.2em;
+    padding: 0.3em 0em 0.1em 0.2em;
 }
