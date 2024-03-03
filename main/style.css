@@ -304,6 +304,7 @@ footer{
     justify-content: start;
 }
 .another-recommendation-area{
+    margin-top: 0.2em;
     text-align: left;
 }
 .recommendation-layer img{
@@ -311,8 +312,8 @@ footer{
     padding: 0.5em;
 }
 .recommendation-layer div{
-    max-width: 238px;
+    max-width: 230px;
 }
 .another-recommendation-title{
-    padding: 0.2em 0.2em;
+    padding: 0.3em 0.2em 0.1em 0.2em;
 }
