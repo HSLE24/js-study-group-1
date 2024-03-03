@@ -1,4 +1,4 @@
-const API_KEY = ""//"b00bbb5eec1542ab82a2fd633b75c407"//"ba5d7061db304fe696dfea7c181fb9ab" //`4a1471f63a0a4ef081c3a604886e6ac4`;
+const API_KEY = `4a1471f63a0a4ef081c3a604886e6ac4`;
 let recipesList = [];
 const category = document.querySelectorAll('.nation-category button')
 
