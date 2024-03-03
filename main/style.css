@@ -234,6 +234,18 @@ footer{
         margin:0;
     }
 }
+
+@media screen and (max-width:400px){
+    .recommendation-group{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .recommendation-layer{
+        align-items: center;
+    }
+}
+
 .recipe-info{
     cursor:pointer;
 }
@@ -315,7 +327,6 @@ footer{
 }
 .another-recommendation-area{
     margin-top: 0.2em;
-    text-align: center;
 }
 .recommendation-layer img{
     max-width: 238px;
@@ -326,5 +337,5 @@ footer{
     text-align: center;
 }
 .another-recommendation-title{
-    padding: 0.3em 0em 0.1em 0.2em;
+    padding: 0.3em -0.1em 0.1em 0.2em;
 }
